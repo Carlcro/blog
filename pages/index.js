@@ -29,6 +29,9 @@ export default function Home({ allPostsData }) {
             </li>
           ))}
         </ul>
+        <Link href="/pokemon?name=charmander">
+          <a>To pokemon page</a>
+        </Link>
       </section>
     </Layout>
   );
