@@ -3,8 +3,12 @@ import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
+import axios from "axios";
+import { useEffect } from "react";
 
-export default function Post({ postData }) {
+export default function Post({ postData, pokemon }) {
+  console.log(pokemon);
+
   return (
     <Layout>
       <Head>
@@ -16,6 +20,12 @@ export default function Post({ postData }) {
           <Date dateString={postData.date} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        {pokemon && (
+          <div>
+            <p>{pokemon.name}</p>
+            <img src={`${pokemon.sprites.back_default}`}></img>
+          </div>
+        )}
       </article>
     </Layout>
   );
@@ -31,6 +41,18 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
+  if (params.id === "use-pokemon-api") {
+    const { data } = await axios.get(
+      "https://pokeapi.co/api/v2/pokemon/charmander/"
+    );
+    return {
+      props: {
+        postData,
+        pokemon: data,
+      },
+    };
+  }
+
   return {
     props: {
       postData,
