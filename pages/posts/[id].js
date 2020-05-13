@@ -4,11 +4,8 @@ import Head from "next/head";
 import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
 import axios from "axios";
-import { useEffect } from "react";
 
 export default function Post({ postData, pokemon }) {
-  console.log(pokemon);
-
   return (
     <Layout>
       <Head>
