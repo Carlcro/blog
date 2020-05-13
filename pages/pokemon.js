@@ -12,6 +12,7 @@ export default function Pokemon({ pokemon }) {
       <h1>Pokemon</h1>
       {pokemon && (
         <div>
+          <h2>Hej</h2>
           <p>Name: {pokemon.name}</p>
           <p>Weight: {pokemon.weight}</p>
           <img
